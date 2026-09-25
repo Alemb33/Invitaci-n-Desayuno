@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tengo una propuesta ☕</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #050b14;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.invitation {
+    position: relative;
+    width: 92%;
+    max-width: 750px;
+    height: 540px;
+    overflow: hidden;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #081426, #102a43, #184e77);
+    box-shadow: 0 20px 70px rgba(0,0,0,.6);
+    text-align: center;
+    color: white;
+}
+
+.glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(90,190,255,.18);
+    filter: blur(65px);
+    animation: glowMove 7s infinite alternate ease-in-out;
+}
+
+.g1 { top:-120px; left:-80px; }
+.g2 { bottom:-130px; right:-60px; animation-delay:2s; }
+
+@keyframes glowMove {
+    from { transform:translate(0,0); }
+    to { transform:translate(90px,60px); }
+}
+
+/* ESTRELLAS */
+
+.star {
+    position:absolute;
+    color:white;
+    opacity:.65;
+    animation:twinkle 2s infinite alternate ease-in-out;
+}
+
+.s1 {left:8%;top:15%;font-size:20px;}
+.s2 {left:20%;top:70%;font-size:13px;animation-delay:.7s;}
+.s3 {left:40%;top:12%;font-size:15px;animation-delay:1.2s;}
+.s4 {left:67%;top:20%;font-size:21px;animation-delay:.3s;}
+.s5 {left:87%;top:63%;font-size:14px;animation-delay:1.5s;}
+.s6 {left:75%;top:82%;font-size:11px;animation-delay:.9s;}
+.s7 {left:12%;top:43%;font-size:10px;animation-delay:1.8s;}
+
+@keyframes twinkle {
+    from {opacity:.15; transform:scale(.7) rotate(0);}
+    to {opacity:1; transform:scale(1.3) rotate(25deg);}
+}
+
+/* INTRO */
+
+.intro {
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:5;
+    animation:intro 6s forwards;
+}
+
+.breakfast {
+    font-size:72px;
+    animation:float 2s infinite ease-in-out;
+}
+
+.intro h2 {
+    font-size:30px;
+    margin:20px;
+}
+
+.intro p {
+    opacity:.7;
+}
+
+@keyframes float {
+    0%,100% {transform:translateY(0);}
+    50% {transform:translateY(-12px);}
+}
+
+@keyframes intro {
+    0% {opacity:0;}
+    12% {opacity:1;}
+    70% {opacity:1;}
+    100% {opacity:0;visibility:hidden;}
+}
+
+/* INVITACIÓN */
+
+.content {
+    position:absolute;
+    inset:0;
+    padding:42px;
+    opacity:0;
+    transform:scale(.92);
+    animation:show 1.3s 5.5s forwards;
+}
+
+@keyframes show {
+    to {
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.small {
+    font-size:11px;
+    letter-spacing:5px;
+    opacity:.55;
+}
+
+.icons {
+    font-size:45px;
+    margin:17px;
+}
+
+.title {
+    font-size:38px;
+    font-weight:700;
+    margin:10px;
+}
+
+.message {
+    font-size:16px;
+    line-height:1.7;
+    max-width:550px;
+    margin:auto;
+    opacity:.9;
+}
+
+.question {
+    font-size:23px;
+    font-weight:700;
+    margin-top:20px;
+}
+
+.buttons {
+    margin-top:22px;
+}
+
+button {
+    border:none;
+    padding:13px 21px;
+    margin:6px;
+    border-radius:25px;
+    font-size:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.yes {
+    background:#38bdf8;
+    color:#06121f;
+}
+
+.obvious {
+    background:white;
+    color:#102a43;
+}
+
+.no {
+    background:#26394d;
+    color:white;
+    border:1px solid rgba(255,255,255,.3);
+}
+
+button:hover {
+    transform:translateY(-4px) scale(1.05);
+}
+
+/* RESPUESTA SÍ */
+
+.final {
+    display:none;
+    position:absolute;
+    inset:0;
+    z-index:20;
+    background:linear-gradient(145deg,#081426,#184e77);
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.final .big {
+    font-size:75px;
+}
+
+.final h1 {
+    font-size:34px;
+}
+
+/* RESPUESTA NO */
+
+.challenge {
+    display:none;
+    position:absolute;
+    inset:0;
+    z-index:30;
+    background:linear-gradient(145deg,#101820,#243447);
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:35px;
+}
+
+.gym {
+    font-size:75px;
+    animation:flip .8s infinite alternate;
+}
+
+@keyframes flip {
+    from {transform:rotate(-15deg);}
+    to {transform:rotate(15deg);}
+}
+
+.back {
+    margin-top:15px;
+    background:white;
+    color:#102a43;
+}
+
+/* CELULAR */
+
+@media(max-width:600px) {
+
+    .invitation {
+        width:94%;
+        height:600px;
+    }
+
+    .content {
+        padding:30px 20px;
+    }
+
+    .title {
+        font-size:31px;
+    }
+
+    .message {
+        font-size:15px;
+    }
+
+    button {
+        display:block;
+        width:85%;
+        margin:10px auto;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="invitation">
+
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<div class="star s1">✦</div>
+<div class="star s2">★</div>
+<div class="star s3">✦</div>
+<div class="star s4">★</div>
+<div class="star s5">✦</div>
+<div class="star s6">★</div>
+<div class="star s7">✦</div>
+
+<!-- INTRO -->
+
+<div class="intro">
+
+<div class="breakfast">☕🥐</div>
+
+<h2>Tengo una propuesta para ti...</h2>
+
+<p>Nada sospechoso 👀</p>
+
+</div>
+
+
+<!-- INVITACIÓN -->
+
+<div class="content">
+
+<div class="small">
+PROPUESTA OFICIAL
+</div>
+
+<div class="icons">
+☕ 🥞 🥐
+</div>
+
+<div class="title">
+¿Vamos a desayunar?
+</div>
+
+<div class="message">
+
+Tengo una propuesta bastante sencilla:
+
+<br><br>
+
+Tú + yo + un buen desayuno ☕
+
+<br>
+
+y una buena plática.
+
+</div>
+
+<div class="question">
+¿Qué dices?
+</div>
+
+
+<div class="buttons">
+
+<button class="yes" onclick="acceptInvitation()">
+😎 Va, jalo
+</button>
+
+<button class="obvious" onclick="acceptInvitation()">
+☕ Obviamente sí
+</button>
+
+<button class="no" onclick="rejectInvitation()">
+❌ No
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PANTALLA SÍ -->
+
+<div class="final" id="finalScreen">
+
+<div class="big">
+☕😎
+</div>
+
+<h1>¡Excelente decisión!</h1>
+
+<p>
+Entonces ya tenemos un desayuno pendiente.
+<br><br>
+Solo falta ponernos de acuerdo con el día y el lugar 😎
+</p>
+
+</div>
+
+
+<!-- PANTALLA NO 😂 -->
+
+<div class="challenge" id="challengeScreen">
+
+<div class="gym">
+🤸‍♂️
+</div>
+
+<h1>
+🚨 ALTO AHÍ
+</h1>
+
+<p>
+Para seleccionar la opción
+<strong>"NO"</strong>,
+primero tienes que echarte:
+</p>
+
+<h2>
+🤸‍♂️ 3 MORTALES PARA ATRÁS 🤸‍♂️
+</h2>
+
+<p>
+Favor de enviar evidencia para validar la respuesta 😂
+</p>
+
+<button class="back" onclick="goBack()">
+← Mejor regreso a las opciones
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+function acceptInvitation() {
+    document.getElementById("finalScreen").style.display="flex";
+}
+
+function rejectInvitation() {
+    document.getElementById("challengeScreen").style.display="flex";
+}
+
+function goBack() {
+    document.getElementById("challengeScreen").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
